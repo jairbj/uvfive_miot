@@ -35,8 +35,7 @@ async def async_setup_device_entry(hass: core.HomeAssistant, entry: config_entri
     if not platforms:
         return False
 
-    for platform in platforms:
-        hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, platform))
+    await hass.config_entries.async_forward_entry_setups(entry, platforms)
 
     return True
 
